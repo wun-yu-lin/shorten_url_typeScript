@@ -5,7 +5,9 @@ import mongoose from 'mongoose';
 import dotenv from "dotenv"
 import path from 'path';
 import {IndexRouter} from './router/IndexRouter'
+import {RedirectRouter} from './router/redirectRouter'
 const indexRouter = new IndexRouter;
+const redirectRouter = new RedirectRouter;
 //import {indexController} from "./server/controller/index"
 //import {redirectController} from "./server/controller/redirectUrl"
 const app: Express = express();
@@ -42,6 +44,7 @@ if(process.env.mongoDBurl !== undefined) {
 
   //首頁 導入短網址＋首頁呈現
   app.use('/',indexRouter.router)
+  app.use('/r',redirectRouter.router)
   
 
   //短網址Redircet API
